@@ -74,7 +74,53 @@ public class App {
 
     //todo Task 4
     public void printRhombus(){
-        // input your solution here
+        int h;
+        char c;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("h: ");
+        h  = scanner.nextInt();
+        System.out.print("c: ");
+        c = scanner.next().charAt(0);
+
+        if(h % 2 == 0){
+            System.out.println("Invalid number!");
+            return;
+        }
+
+        int anzChar = 1;
+        int anzSpace  = h/2 - 1;
+
+        for(int k = 0; k < h/2; k++){
+            for(int i = 0; i <= anzSpace; i++){
+                System.out.print(" ");
+            }
+            anzSpace--;
+            charInRow(c, anzChar);
+            anzChar += 2;
+            System.out.println();
+        }
+        anzChar = h;
+        for(int k = 0; k < h/2 + 1; k++){
+            for(int i = 0; i <= anzSpace; i++){
+                System.out.print(" ");
+            }
+            anzSpace++;
+            charInRow(c, anzChar);
+            anzChar -= 2;
+            System.out.println();
+        }
+    }
+
+    private void charInRow(int c, int anzChar){
+
+        for(int i = c - anzChar/2; i <= c; i++){
+            System.out.print((char)i);
+        }
+
+        for(int i = c - 1; i >= c - anzChar/2; i--){
+            System.out.print((char)i);
+        }
     }
 
     //todo Task 5
@@ -113,30 +159,40 @@ public class App {
 
     //todo Task 6
     public void happyNumbers(){
-        // input your solution here
+        int number;
+        int sum = 0;
+        int rem;
+        Scanner scanner = new Scanner(System.in);
 
-        final int ROWS = 4;
-        final int COLS = 4;
+        System.out.print("n: ");
+        number = scanner.nextInt();
 
-        for(int i = 0; i < ROWS; i++){
-            for(int j = 0; j < COLS; j++){
+        while (number != 1 && number != 4){
 
-                System.out.print("* ");
+            while (number > 0){
+                rem = number %10;
+                sum = sum + (rem*rem);
+                number = number/10;
+                }
+            number = sum;
+            sum = 0;
             }
-            System.out.println();
-
+        if(number == 1){
+            System.out.println("Happy number!");
+        } else {
+            System.out.println("Sad number!");
         }
     }
 
     public static void main(String[] args){
         App exercise2 = new App();
-/*
+
         System.out.println("Task 1: Largest Number");
         exercise2.largestNumber();
 
         System.out.println("\nTask 2: Stairs");
         exercise2.stairs();
-*/
+
         System.out.println("\nTask 3: Pyramide");
         exercise2.printPyramid();
 
